@@ -2,6 +2,7 @@ import tensorflow.keras
 from PIL import Image, ImageOps
 import numpy as np
 import cv2
+import time
 import json, requests, time
 
 Key = 'zZn5lZCJeeOQ1qhDOzO1QsJem8nFUTkSNL268RZGkY'
