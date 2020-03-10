@@ -80,26 +80,23 @@ def Create_SL(Tag, Type):
      except Exception as e:
           print(e) 
 
+while True:
+    takeImg = Get_SL("take_pic")
+    if takeImg == '1':
 
-takeImg = Get_SL("take_pic")
-time.sleep(2)
-#print(takeImg)
-takeImg = 1 
+        img = takeImage()
+        predic = imageProcess()
+        predic = predic.tolist()
+        
+        val = 0
+        for i in range(7):
+            if predic[0][i] > val:
+                legoCat = i
+                val = predic[0][i]
 
-if takeImg == 1:
-    img = takeImage()
-    predic = imageProcess()
-    predic = predic.tolist()
-    
-    val = 0
-    for i in range(7):
-        if predic[0][i] > val:
-            legoCat = i
-            val = predic[0][i]
-
-    print(legoCat)
-    Put_SL("brick_type", "STRING", str(legoCat))
-    Put_SL("take_pic", "INTEGER", 0)
+        print(legoCat)
+        Put_SL("brick_type", "STRING", str(legoCat))
+        Put_SL("take_pic", "STRING", '0')
 
 
 
