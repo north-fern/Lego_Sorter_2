@@ -99,6 +99,7 @@ if takeImg == 1:
 
     print(legoCat)
     Put_SL("brick_type", "STRING", str(legoCat))
+    Put_SL("take_pic", "INTEGER", 0)
 
 
 

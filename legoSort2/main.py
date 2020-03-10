@@ -9,11 +9,21 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 import ubinascii, urequests, ujson, utime
 
-
+Key = 'zZn5lZCJeeOQ1qhDOzO1QsJem8nFUTkSNL268RZGkY'
 
 # Write your program here
 ev3 = EV3Brick()
-ev3.speaker.beep()
+speed = 50
+twist = Motor(Port.A)
+dump = Motor(Port.B)
+
+pos0 = 0 # 1x1
+pos1 = 35 # 1x2
+pos2 = 65 # 2x2
+pos3 = 95 # 2x3
+pos4 = 125 # 2x4
+pos5 = 155 # 1x3
+pos6 = 185 # unknown
 
 
 
@@ -57,4 +67,47 @@ def Create_SL(Tag, Type):
 
 def TurnMotor(pos):
     if pos == 0:
-        motor.
+         twist.run_target(speed, pos0, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 1:
+         twist.run_target(speed, pos1, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 2:
+         twist.run_target(speed, pos2, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 3:
+         twist.run_target(speed, pos3, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 4:
+         twist.run_target(speed, pos4, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 5:
+         twist.run_target(speed, pos5, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+    if pos == 6:
+         twist.run_target(speed, pos6, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 180, stop_type = Stop.COAST, wait = True)
+         dump.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+         twist.run_target(speed, 0, stop_type = Stop.COAST, wait = True)
+
+justDone = 0
+ev3.speaker.beep()
+
+while True:
+     bricktype = Get_SL("brick_type")
+     if bricktype != 'none':
+          TurnMotor(int(bricktype))
+          Put_SL("brick_type", "STRING", 'none')
+
