@@ -83,18 +83,22 @@ def Create_SL(Tag, Type):
 
 takeImg = Get_SL("take_pic")
 time.sleep(2)
-print(takeImg)
+#print(takeImg)
 takeImg = 1 
 
 if takeImg == 1:
     img = takeImage()
     predic = imageProcess()
-    print(predic)
-    print(type(predic))
-    legoCat = np.where(predic == max(predic))
-    print("Lego Index is" + str(type(legoCat)))
-    legoCat = legoCat + 1
-    Put_SL("brick_type", "STRING", int2str(legoCat))
+    predic = predic.tolist()
+    
+    val = 0
+    for i in range(7):
+        if predic[0][i] > val:
+            legoCat = i
+            val = predic[0][i]
+
+    print(legoCat)
+    Put_SL("brick_type", "STRING", str(legoCat))
 
 
 
